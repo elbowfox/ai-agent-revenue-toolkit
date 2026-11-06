@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Prompt Generator — Free Tool</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #0f172a; color: #e2e8f0; }
+        h1 { color: #38bdf8; }
+        textarea, select, button { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: white; font-size: 16px; }
+        button { background: #0ea5e9; cursor: pointer; font-weight: bold; }
+        button:hover { background: #0284c7; }
+        #output { background: #1e293b; padding: 20px; border-radius: 8px; white-space: pre-wrap; margin-top: 20px; }
+        .cta { background: #10b981; margin-top: 30px; }
+        .cta:hover { background: #059669; }
+    </style>
+</head>
+<body>
+    <h1>⚡ AI Agent Prompt Generator</h1>
+    <p>Generate custom system prompts for AI agents in seconds. Free tool — upgrade to the full toolkit for 50+ advanced prompts.</p>
+
+    <label>Agent Role / Purpose</label>
+    <input type="text" id="role" placeholder="e.g., Freelance Proposal Writer, Customer Support, Lead Qualifier" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #334155; background:#1e293b; color:white;">
+
+    <label>Primary Task</label>
+    <textarea id="task" rows="3" placeholder="What should this agent do?"></textarea>
+
+    <label>Output Format</label>
+    <select id="format">
+        <option>Structured JSON</option>
+        <option>Markdown Report</option>
+        <option>Bullet Points</option>
+        <option>Professional Email</option>
+        <option>Social Media Thread</option>
+    </select>
+
+    <button onclick="generate()">Generate Prompt</button>
+
+    <div id="output" style="display:none;"></div>
+
+    <button class="cta" onclick="window.open('https://gumroad.com', '_blank')">
+        Get the Full 50+ Prompt Toolkit ($29)
+    </button>
+
+    <script>
+        function generate() {
+            const role = document.getElementById('role').value || 'general assistant';
+            const task = document.getElementById('task').value || 'help the user accomplish their goal';
+            const format = document.getElementById('format').value;
+
+            const prompt = `You are an expert AI agent specialized as a ${role}.
+
+Your primary mission is to: ${task}
+
+Guidelines:
+- Be concise, accurate, and action-oriented
+- Ask clarifying questions if information is missing
+- Stay strictly within your defined role
+- Format all outputs as: ${format}
+- Refuse requests outside your scope politely
+- Provide confidence scores when making recommendations
+
+Begin by confirming your understanding of the task, then proceed.`;
+
+            const out = document.getElementById('output');
+            out.style.display = 'block';
+            out.textContent = prompt;
+        }
+    </script>
+</body>
+</html>
